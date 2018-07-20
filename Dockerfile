@@ -1,11 +1,7 @@
-FROM ubuntu:xenial
+FROM jfloff/alpine-python:2.7-onbuild
 MAINTAINER Muhammad Fahrizal Rahman "riesal@gmail.com"
-RUN apt-get update -y
-RUN sed -i 's/archive.ubuntu.com/buaya.klas.or.id/g' /etc/apt/sources.list
-RUN sed -i 's/security.ubuntu.com/buaya.klas.or.id/g' /etc/apt/sources.list
-RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev build-essential
-RUN pip install --upgrade pip
+RUN apk update
+RUN apk add curl net-tools wget drill
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
